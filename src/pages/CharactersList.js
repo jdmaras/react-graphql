@@ -1,5 +1,6 @@
 import React from "react";
 import { useCharacters } from "../hooks/useCharacters";
+import { Link } from "react-router-dom";
 import "./CharactersList.css"
 
 //naming your query and making it equal to the import from apollo/client
@@ -30,10 +31,12 @@ export default function CharactersList() {
     return (
         <div className="CharacterList">
             {data.characters.results.map(character => {
-                return <div>
-                    <img src={character.image} />
-                    <h2>{character.name}</h2>
-                </div>
+                return (
+                    <Link to={`/${character.id}`}>
+                        <img src={character.image} />
+                        <h2>{character.name}</h2>
+                    </Link>
+                )
             })}
         </div>
     )

@@ -1,17 +1,17 @@
 import React from "react";
 import "./Character.css";
 import { useCharacter } from "../hooks/useCharacter";
+import { useParams } from "react-router";
 
 export default function Character() {
-    const { data, loading, error } = useCharacter(5)
+    //you want to dynamically generate id
+    const { id } = useParams();
+    //injecting the id
+    const { data, loading, error } = useCharacter(id)
 
-    console.log({
-        error,
-        loading,
-        data,
-    })
     if (error) return <div>something went wrong</div>
     if (loading) return <div>spinner</div>
+
     return <div className="Character">
         <img src={data.character.image} width={750} height={750} alt="" />
         <div className="Character-content">
